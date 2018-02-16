@@ -2,16 +2,13 @@ var player,
     time_update_interval = 0;
 
 var timeLike = [];
+var timeDislike = [];
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('video-placeholder', {
         width: 600,
         height: 400,
         videoId: 'Xa0Q0J5tOP0',
-        playerVars: {
-            color: 'white',
-            playlist: 'taJ60kskkns,FG0fTKAqZ5g'
-        },
         events: {
             onReady: initialize
         }
@@ -19,41 +16,16 @@ function onYouTubeIframeAPIReady() {
 }
 
 function initialize(){
-
+    
     // Update the controls on load
     updateTimerDisplay();
 
     // Clear any old interval.
     clearInterval(time_update_interval);
 
-    // Start interval to update elapsed time display and
-    // the elapsed part of the progress bar every second.
-    time_update_interval = setInterval(function () {
-        updateTimerDisplay();
-    }, 1000);
+    document.getElementById('video_title').innerHTML = player.getVideoData().title;
 
 }
-
-
-// This function is called by initialize()
-function updateTimerDisplay(){
-    // Update current time text display.
-    $('#current-time').text(formatTime( player.getCurrentTime() ));
-    $('#duration').text(formatTime( player.getDuration() ));
-}
-
-
-
-// Playback
-
-$('#play').on('click', function () {
-    timeLike.push(formatTime( player.getCurrentTime() )); 
-});
-
-
-$('button1').click(function() {
-    $(this).effect( "highlight", {color: 'red'}, 3000 );
-});
 
 
 // Helper Functions
@@ -74,12 +46,12 @@ $('pre code').each(function(i, block) {
     hljs.highlightBlock(block);
 });
 
-function download(filename, text) {
+function download(filename) {
   var pom = document.createElement('a');
   pom.setAttribute('href', 'data:text/plain;charset=utf-8,' +
 
-encodeURIComponent(timeLike));
-  pom.setAttribute('download', filename);
+  encodeURIComponent(filename + "\n" + player.getVideoData().title + "\n" + player.isMuted() + "\n" + player.getDuration() + "\n" + timeLike + "\n" + timeDislike + "\n" ));
+  pom.setAttribute('download', filename + ".txt");
 
   pom.style.display = 'none';
   document.body.appendChild(pom);
@@ -88,4 +60,32 @@ encodeURIComponent(timeLike));
 
   document.body.removeChild(pom);
 }
+
+var up_v = false;
+var down_v = false;
+
+
+$('.down').on('click', function(){
+    $('.down').removeClass('selected');
+    $(this).addClass('selected');
+    $('.up').removeClass('selected');
+
+    if (down_v == false) {
+        up_v = false;
+        down_v = true;
+    	timeDislike.push(player.getCurrentTime());
+    }
+});
+
+$('.up').on('click', function(){
+    $('.up').removeClass('selected');
+    $(this).addClass('selected');
+    $('.down').removeClass('selected');
+
+    if (up_v == false) {
+        up_v = true;
+        down_v = false;
+    	timeLike.push(player.getCurrentTime());
+    }
+});
 
