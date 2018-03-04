@@ -8,7 +8,7 @@ function onYouTubeIframeAPIReady() {
     player = new YT.Player('video-placeholder', {
         width: 600,
         height: 400,
-        videoId: 'wJTzWFoyTjk',
+        videoId: '3DtEyQF5eAA',
         events: {
             onReady: initialize
         }
@@ -51,7 +51,7 @@ function download(filename, isCapt) {
   pom.setAttribute('href', 'data:text/plain;charset=utf-8,' +
 
   encodeURIComponent(filename + "\n" + player.getVideoData().title + "\n" + player.isMuted() + "\n" + isCapt + "\n" + player.getDuration() + "\n" + timeLike + "\n" + timeDislike + "\n" ));
-  pom.setAttribute('download', filename + "1stVideo"  + ".txt");
+  pom.setAttribute('download', filename + "2ndVideo" + ".txt");
 
   pom.style.display = 'none';
   document.body.appendChild(pom);
