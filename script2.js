@@ -60,7 +60,7 @@ function download(filename, isCapt) {
 
   document.body.removeChild(pom);
 	
-  window.alert("Go to next tab");
+  window.alert("Go to next tab 'Video 3' ");
 
 }
 
