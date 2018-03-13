@@ -67,6 +67,7 @@ ggplot(dat1) +
   coord_flip() + labs(title= "Video 4, Brown Butter Pumpkin Tortellini | Byron Talbott, with audio, with caption") +
   labs(x = "", y = "Duration in seconds")
 
-# title= "Video 1, The BEST Carrot Cake, with audio, withot caption"
-# title= "Video 2, Basil Ice Cream, muted, withot caption"
+# title= "Video 1, Basil Ice Cream, muted, without caption"
+# title= "Video 2, The BEST Carrot Cake, with audio, without caption"
 # title= "Video 3, Pan-fried Salmon, Spanish rice with Cilantro Oil recipe, muted, with caption"
+# title= "Video 4, Brown Butter Pumpkin Tortellini | Byron Talbott, with audio, with caption"
