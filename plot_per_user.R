@@ -2,19 +2,20 @@
 # Manually:
 # Change number in the name of file before .txt that corresponds to ID of video.
 # Change 'title'
-#install.packages("tidyverse")
-#library(tidyverse)
-
+# install.packages('ggplot', dep = TRUE)
+library(ggplot2)
 dat1 <- data.frame(
   pos = factor(),
   start = double(),
   end = double()
 )
 
-for (num in 1:5) {
+var_list = list()
+
+for (num in 1:4) {
   
   # Change number in the name of file before .txt that corresponds to ID of video.
-  file_name = paste("User",num,"4.txt",sep = '')
+  file_name = paste("User6",num,".txt",sep = '')
   print(file_name)
   
   video1 = read.table(file_name, sep = '\n')
@@ -49,25 +50,21 @@ for (num in 1:5) {
   
   print(user_name)
   dat = data.frame(
-    pos = user_name,
+    pos = paste("Video ",num),
     start = like_clicks_list,
     end = dislike_clicks_list
   )
   print(dat)
-  
-  
+ 
   dat$pos = factor(dat$pos)
   dat1 = rbind(dat1,dat)
   
 }
 
-library(ggplot2)
 ggplot(dat1) + 
   geom_segment(aes(x=pos, y = start, yend=end, xend=pos), color="blue", size=3) +
-  coord_flip() + labs(title= "Video 4, Brown Butter Pumpkin Tortellini | Byron Talbott, with audio, with caption") +
+  coord_flip() +   ggtitle("User 6") +
+  theme(plot.title = element_text(hjust = 0.5))+
   labs(x = "", y = "Duration in seconds")
 
-# title= "Video 1, Basil Ice Cream, muted, without caption"
-# title= "Video 2, The BEST Carrot Cake, with audio, without caption"
-# title= "Video 3, Pan-fried Salmon, Spanish rice with Cilantro Oil recipe, muted, with caption"
-# title= "Video 4, Brown Butter Pumpkin Tortellini | Byron Talbott, with audio, with caption"
+
