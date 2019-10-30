@@ -2,7 +2,7 @@
 # Manually:
 # Change number in the name of file before .txt that corresponds to ID of video.
 # Change 'title'
-# install.packages('ggplot', dep = TRUE)
+# install.packages g('ggplot', dep = TRUE)
 library(ggplot2)
 dat1 <- data.frame(
   pos = factor(),
